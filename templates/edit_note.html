@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Редактирование заметки</h1>
+<form method="POST" enctype="multipart/form-data" class="form-add">
+    {{ form.hidden_tag() }}
+    <p class="form-add_item">
+        {{ form.title.label }}<br>
+        {{ form.title(class="form-add_item_value") }}
+    </p>
+    <p class="form-add_item">
+        {{ form.date.label }}<br>
+        {{ form.date(class="form-add_item_value") }}
+    </p>
+    <p class="form-add_item">
+        {{ form.category.label }}<br>
+        {{ form.category(class="form-add_item_value") }}
+    </p>
+    <p class="form-add_item">
+        {{ form.content.label }}<br>
+        {{ form.content(rows=4, cols=50) }}
+    </p>
+    <p class="form-add_item">
+        {{ form.file.label }}<br>
+        {{ form.file(class="form-add_btn") }}
+    </p>
+    <p class="form-add_btn">
+        <input type="submit" value="Обновить">
+    </p>
+</form>
+{% endblock %}

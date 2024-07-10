@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="note-wrapper">
+<h2 class="note-title">{{ memo.title }}</h2>
+<p class="note-date">{{ memo.date }}</p>
+<p class="note-item">{{ memo.category }}</p>
+<p class="note-item">{{ memo.content }}</p>
+{% if memo.file %}
+    <p class="note-item">
+        Файл: <a href="{{ url_for('static', filename='uploads/' ~ memo.file) }}">
+        {{ memo.file }}
+            </a>
+    </p>
+{% endif %}
+<a href="{{ url_for('index') }}" class="note-back">< К заметкам</a>
+</div>
+{% endblock %}

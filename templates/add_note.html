@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Новая заметка</h1>
+<form method="POST" enctype="multipart/form-data" class="form-add">
+    {{ mode.hidden_tag() }}
+    <p class="form-add_item">
+        {{ mode.title.label }}<br>
+        {{ mode.title(class="form-add_item_value") }}
+    </p>
+    <p class="form-add_item">
+        {{ mode.date.label }}<br>
+        {{ mode.date(class="form-add_item_value") }}
+    </p>
+    <p class="form-add_item">
+        {{ mode.category.label }}<br>
+        {{ mode.category(class="form-add_item_value") }}
+    </p>
+    <p class="form-add_item">
+        {{ mode.content.label }}<br>
+        {{ mode.content(rows=5, cols=50) }}
+    </p>
+    <p class="form-add_item">
+        {{ mode.file.label }}<br>
+        {{ mode.file(class="form-add_btn") }}
+    </p>
+    <p class="form-add_btn">
+        <input type="submit" value="Добавить заметку">
+    </p>
+</form>
+{% endblock %}
