@@ -4,12 +4,13 @@
 <div class="note-wrapper">
 <h2 class="note-title">{{ memo.title }}</h2>
 <p class="note-date">{{ memo.date }}</p>
-<p class="note-item">{{ memo.category }}</p>
-<p class="note-item">{{ memo.content }}</p>
+<p class="note-item"><i>{{ memo.category }}</i></p>
+<p class="note-item"><i>{{ memo.content }}</i></p>
 {% if memo.file %}
-    <p class="note-item">
-        Файл: <a href="{{ url_for('static', filename='uploads/' ~ memo.file) }}">
-        {{ memo.file }}
+    <p class="note-file">
+        Файл: <a href="{{ url_for('static', filename='uploads/' ~ memo.file)
+            }}" class="note-file_link">
+        <i>{{ memo.file }}</i>
             </a>
     </p>
 {% endif %}

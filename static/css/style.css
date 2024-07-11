@@ -37,6 +37,7 @@ body {
   -moz-background-size: cover;    /* Mozilla*/
   -o-background-size: cover;      /* Opera*/
   background-size: cover;
+  overflow-x: hidden;
 }
 
 a {
@@ -173,4 +174,36 @@ input[type="file" i]::-webkit-file-upload-button:hover,
   max-width: 720px;
 }
 
+.note-date {
+  font-size: 18px;
+  color: #55291A;
+}
 
+.note-item {
+  margin-bottom: 10px;
+  color: #55291A;
+  font-size: 24px;
+}
+
+.note-file {
+  margin-bottom: 20px;
+  padding-top: 10px;
+  width: 100%;
+  border-top: 1px solid black;
+  color: #55291A;
+}
+
+.note-file_link {
+  color: #55291A;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.note-back {
+  color: #55291A;
+  font-size: 18px;
+}
+
+.note-back:hover {
+  color: black;
+}

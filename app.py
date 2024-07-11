@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, flash
+from flask import Flask, render_template, redirect, url_for, flash, request
 from forms import NoteForm
 from models import Note, db
 import os
@@ -16,22 +16,25 @@ with app.app_context():
 
 @app.route('/')
 def index():
-    notes = Note.query.all()
+    notes = db.session.execute(db.select(Note).order_by(Note.id)).scalars()
+    # notes = Note.query.all()
     return render_template('index.html', notes=notes)
 
 
 @app.route('/add_note', methods=['GET', 'POST'])
 def add_note():
     form = NoteForm()
-    if form.validate_on_submit():
+    if request.method == 'POST':
         file = form.file.data
         filename = None
         if file:
             filename = file.filename
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        note = Note(title=form.title.data, date=form.date.data,
+        note = Note(title=form.title.data,
+                    date=form.date.data,
                     category=form.category.data,
-                    content=form.content.data, file=filename)
+                    content=form.content.data,
+                    file=filename)
         db.session.add(note)
         db.session.commit()
         flash('Новая заметка успешно добавлена!')
@@ -41,7 +44,7 @@ def add_note():
 
 @app.route('/note/<int:note_id>', methods=['GET', 'POST'])
 def note_detail(note_id):
-    note = Note.query.get_or_404(note_id)
+    note = db.get_or_404(Note, note_id)
     return render_template('note.html', memo=note)
 
 
