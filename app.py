@@ -17,7 +17,6 @@ with app.app_context():
 @app.route('/')
 def index():
     notes = db.session.execute(db.select(Note).order_by(Note.id)).scalars()
-    # notes = Note.query.all()
     return render_template('index.html', notes=notes)
 
 
